@@ -1,49 +1,48 @@
 package com.cybertek.pages;
 
+
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
+import com.cybertek.utilities.TestBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LogInPage {
+public class LoginPage extends TestBase {
 
-
-    public LogInPage() {
+    public LoginPage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    public static @FindBy(xpath = "//a[contains(text(),'BriteErpDemo')]")
-    WebElement DemoSelector;
+    @FindBy(xpath = "//div[@class='form-group field-login']/input")
+    public WebElement emailBox;
 
-    public static @FindBy(id = "login")
-    WebElement userName;
+    @FindBy(xpath = "//div[@class='form-group field-password']/input")
+    public WebElement passwordBox;
 
-    public static @FindBy(id = "password")
-    WebElement passWord;
-
-    public static @FindBy(xpath = "//b[contains(text(),'Sign in')]")
-    WebElement signinBtn;
-
-    public static  @FindBy(xpath = "//button[@type='submit']")
-    WebElement logInBtn;
+    @FindBy(xpath = "//div[@class='clearfix oe_login_buttons']/button")
+    public WebElement login_button;
 
 
 
-    public static void open() {
-
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-        DemoSelector.click();
+    public void userLogin(){
+        emailBox.sendKeys(ConfigurationReader.getProperties("UserEmai"));
+        passwordBox.sendKeys(ConfigurationReader.getProperties("UserPassword"));
+        login_button.click();
     }
 
-    public static void login() {
 
-        signinBtn.click();
-        userName.sendKeys(ConfigurationReader.getProperty("ManagerEmail"));
-        passWord.sendKeys(ConfigurationReader.getProperty("ManagerPassword"));
-        logInBtn.click();
+    public void managerLogin(){
 
+        emailBox.sendKeys(ConfigurationReader.getProperties("ManagerEmail"));
+        passwordBox.sendKeys(ConfigurationReader.getProperties("ManagerPassword"));
+        login_button.click();
     }
 
+    public void open(){
+        Driver.getDriver().manage().window().maximize();
+        Driver.getDriver().get(ConfigurationReader.getProperties("url"));
+        waitForPageToLoad(5);
+    }
 
 }

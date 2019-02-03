@@ -1,8 +1,8 @@
 package com.cybertek.utilities;
 
-import com.google.common.base.Function;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
@@ -10,10 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Function;
 
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
@@ -276,5 +274,16 @@ public class BrowserUtils {
         }
     }
 
-}
+    public String[] fromListToString(List<WebElement> x){
+        String[] trans = new String[x.size()];
+        for (WebElement xx : x) {
+            int count = 0;
+            trans[count] = xx.getText();
+            count++;
+        }
+        Arrays.sort(trans);
+        return trans;
+    }
 
+
+}
