@@ -26,6 +26,7 @@ public class LoginPage extends TestBase {
 
 
     public void userLogin(){
+        open();
         emailBox.sendKeys(ConfigurationReader.getProperties("UserEmai"));
         passwordBox.sendKeys(ConfigurationReader.getProperties("UserPassword"));
         login_button.click();
