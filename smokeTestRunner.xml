@@ -2,6 +2,11 @@
 <suite name="WebOrders" verbose="1">
 
     <test name="Smoke">
+
+        <groups>
+
+
+        </groups>
         <packages>
             <package name=".*"></package>
         </packages>

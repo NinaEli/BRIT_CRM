@@ -172,7 +172,7 @@ public class BrowserUtils {
      */
     public static void verifyElementDisplayed(WebElement element) {
         try {
-            assertTrue(element.isDisplayed(), "Element not visible: "+element);
+            assertTrue(element.isDisplayed(), "Element is visible: "+element);
         } catch (NoSuchElementException e) {
             fail("Element not found: " + element);
 

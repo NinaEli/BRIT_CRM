@@ -75,7 +75,6 @@ public class TestBase extends BrowserUtils implements ApplicationConstants{
     }
 
 
-
     public static void mysleep(int a){
         try {
             Thread.sleep(1000*a);
